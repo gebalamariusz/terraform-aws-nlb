@@ -1,0 +1,57 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body: |
+            ## Usage
+
+            ```hcl
+            module "nlb" {
+              source  = "gebalamariusz/nlb/aws"
+              version = "${{ github.ref_name }}"
+
+              name       = "my-app"
+              vpc_id     = "vpc-xxx"
+              subnet_ids = ["subnet-xxx"]
+
+              target_groups = {
+                "app" = {
+                  port        = 8080
+                  protocol    = "TCP"
+                  target_type = "instance"
+                }
+              }
+
+              listeners = {
+                "app" = {
+                  port             = 8080
+                  protocol         = "TCP"
+                  target_group_key = "app"
+                }
+              }
+            }
+            ```
+
+            ## Documentation
+
+            See [README.md](https://github.com/gebalamariusz/terraform-aws-nlb/blob/${{ github.ref_name }}/README.md) for full documentation.
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
