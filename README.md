@@ -24,7 +24,7 @@ This module is designed to work seamlessly with [terraform-aws-vpc](https://gith
 
 ### Basic usage
 
-\`\`\`hcl
+```hcl
 module "nlb" {
   source  = "gebalamariusz/nlb/aws"
   version = "~> 1.0"
@@ -62,11 +62,11 @@ module "nlb" {
     Owner = "team-platform"
   }
 }
-\`\`\`
+```
 
 ### TLS listener with certificate
 
-\`\`\`hcl
+```hcl
 module "nlb" {
   source  = "gebalamariusz/nlb/aws"
   version = "~> 1.0"
@@ -97,24 +97,24 @@ module "nlb" {
     }
   }
 }
-\`\`\`
+```
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| name | Name for the NLB and related resources | \`string\` | n/a | yes |
-| vpc_id | VPC ID where NLB will be deployed | \`string\` | n/a | yes |
-| subnet_ids | List of subnet IDs for NLB | \`list(string)\` | n/a | yes |
-| internal | Whether the NLB is internal | \`bool\` | \`true\` | no |
-| enable_deletion_protection | Enable deletion protection | \`bool\` | \`false\` | no |
-| enable_cross_zone_load_balancing | Enable cross-zone load balancing | \`bool\` | \`true\` | no |
-| enable_access_logs | Enable access logging | \`bool\` | \`false\` | no |
-| access_logs_bucket | S3 bucket for access logs | \`string\` | \`null\` | no |
-| target_groups | Map of target group configurations | \`map(object)\` | \`{}\` | no |
-| listeners | Map of listener configurations | \`map(object)\` | \`{}\` | no |
-| environment | Environment name | \`string\` | \`""\` | no |
-| tags | Additional tags | \`map(string)\` | \`{}\` | no |
+| name | Name for the NLB and related resources | `string` | n/a | yes |
+| vpc_id | VPC ID where NLB will be deployed | `string` | n/a | yes |
+| subnet_ids | List of subnet IDs for NLB | `list(string)` | n/a | yes |
+| internal | Whether the NLB is internal | `bool` | `true` | no |
+| enable_deletion_protection | Enable deletion protection | `bool` | `false` | no |
+| enable_cross_zone_load_balancing | Enable cross-zone load balancing | `bool` | `true` | no |
+| enable_access_logs | Enable access logging | `bool` | `false` | no |
+| access_logs_bucket | S3 bucket for access logs | `string` | `null` | no |
+| target_groups | Map of target group configurations | `map(object)` | `{}` | no |
+| listeners | Map of listener configurations | `map(object)` | `{}` | no |
+| environment | Environment name | `string` | `""` | no |
+| tags | Additional tags | `map(string)` | `{}` | no |
 
 ## Outputs
 
