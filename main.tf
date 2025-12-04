@@ -51,10 +51,10 @@ resource "aws_lb_target_group" "this" {
   vpc_id      = var.vpc_id
   target_type = each.value.target_type
 
-  deregistration_delay          = each.value.deregistration_delay
-  connection_termination        = each.value.connection_termination
-  preserve_client_ip            = each.value.preserve_client_ip
-  proxy_protocol_v2             = each.value.proxy_protocol_v2
+  deregistration_delay   = each.value.deregistration_delay
+  connection_termination = each.value.connection_termination
+  preserve_client_ip     = each.value.preserve_client_ip
+  proxy_protocol_v2      = each.value.proxy_protocol_v2
 
   health_check {
     enabled             = each.value.health_check.enabled
